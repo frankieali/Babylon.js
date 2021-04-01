@@ -1391,7 +1391,7 @@ export class AmmoJSPlugin implements IPhysicsEnginePlugin {
      * @param impostor impostor to sleep
      */
     public sleepBody(impostor: PhysicsImpostor) {
-        Logger.Warn("sleepBody is not currently supported by the Ammo physics plugin");
+        impostor.physicsBody.setActivationState(5)
     }
 
     /**
@@ -1400,6 +1400,9 @@ export class AmmoJSPlugin implements IPhysicsEnginePlugin {
      */
     public wakeUpBody(impostor: PhysicsImpostor) {
         impostor.physicsBody.activate();
+        if(!impostor.physicsBody.isActive()){
+          impostor.physicsBody.forceActivationState(1)
+        }
     }
 
     /**
